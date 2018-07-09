@@ -7,18 +7,22 @@
 ;;------------- Commonly used types -------------
 @export
 (deftype negative-fixnum ()
+  "Defines all negative integer types upto and including -1."
   `(integer ,most-negative-fixnum -1))
 
 @export
 (deftype non-positive-fixnum ()
+  "Defines all non-positive integer types upto and including 0."
   `(integer ,most-negative-fixnum 0))
 
 @export
 (deftype non-negative-fixnum ()
+  "Defines all non-negative integer types starting from and including 0."
   `(integer 0 , most-positive-fixnum))
 
 @export
 (deftype positive-fixnum ()
+  "Defines all positive integer types starting from and including 1."
   `(integer 1 ,most-positive-fixnum))
 
 
@@ -26,24 +30,28 @@
 ;; Inspired by and extended from http://ep.yimg.com/ty/cdn/paulgraham/onlisp.lisp
 @export
 (defmacro aif (test then &optional else)
+  "Similar to the normal @IF, but binds the result of TEST via @LET to IT."
   (let ((it (intern (string 'it))))
     `(let ((,it ,test))
        (if ,it ,then ,else))))
 
 @export
 (defmacro awhen (test &body then)
+  "Similar to the normal @WHEN, but binds the result of TEST via @LET to IT."
   (let ((it (intern (string 'it))))
     `(let ((,it ,test))
        (if ,it (progn ,@then)))))
 
 @export
 (defmacro aunless (test &body else)
+  "Similar to the normal @UNLESS, but binds the result of TEST via @LET to IT."
   (let ((it (intern (string 'it))))
     `(let ((,it ,test))
        (if (not ,it) (progn ,@else)))))
 
 @export
 (defmacro aprog1 (first &body body)
+  "Similar to the normal @PROG1, but binds the result of FIRST via @LET to IT and returns IT."
   (let ((it (intern (string 'it))))
     `(let ((,it ,first))
        ,@body
@@ -51,41 +59,51 @@
 
 @export
 (defmacro blambda (parms &body body)
+  "Similar to @LAMBDA, but defines an unnamed @BLOCK from which one can @RETURN."
   `(lambda ,parms
      (block nil
        ,@body)))
 
 @export
 (defmacro alambda (parms &body body)
+  "Similar to @LAMBDA, but defines SELF via @LABELS which contains the BODY. SELF can be referenced in BODY."
   `(labels ((,(intern (string 'self)) ,parms ,@body))
      #',(intern (string 'self))))
 
 @export
-(defgeneric flatten (obj))
+(defgeneric flatten (obj)
+  (:documentation "Flattens the structure of an object.
+
+An implementation for LISTs already exists. Add specific implementations for special objects."))
 
 @export
-(defmethod flatten ((x t))
-  (labels ((rec (x acc)
-             (cond ((null x) acc)
-                   ((atom x) (cons x acc))
-                   (t (rec (car x) (rec (cdr x) acc))))))
-    (rec x nil)))
+(defmethod flatten ((obj t))
+  "Returns a list with the flatten contents of the LIST OBJ."
+  (labels ((rec (obj acc)
+             (cond ((null obj) acc)
+                   ((atom obj) (cons obj acc))
+                   (t (rec (car obj) (rec (cdr obj) acc))))))
+    (rec obj nil)))
 
 @export
 (defun mkstr (&rest args)
+  "Creates a string out of all elements in ARGS. Each element must be printable per @PRINC."
   (with-output-to-string (s)
     (dolist (a args) (princ a s))))
 
 @export
 (defun symb (&rest args)
+  "Creates a new and internalized SYMBOL, named by applying @MKSTR to ARGS."
   (values (intern (apply #'mkstr args))))
 
 @export
 (defun single (lst)
+  "Predicate verifying that LST is a list containing exactly one element."
   (and (consp lst) (not (cdr lst))))
 
 @export
 (defun mklist (obj)
+  "Returns a new list containing OBJ, or OBJ itself if it is already a list."
   (the list (if (listp obj) obj (list obj))))
 
 
@@ -122,17 +140,19 @@
 
 @export
 (defmacro once-only ((&rest names) &body body)
+  "Protects against multiple evaluation of NAMES during macro-expansion. Usualy used inside of other macros."
   ;; Local modification to use iterate instead of loop
   (let ((gensyms (iterate:iterate (iterate:repeat (length names)) (iterate:collect (gensym)))))
     `(let (,@(loop for g in gensyms collect `(,g (gensym))))
-      `(let (,,@(loop for g in gensyms for n in names collect ``(,,g ,,n)))
-        ,(let (,@(loop for n in names for g in gensyms collect `(,n ,g)))
-           ,@body)))))
+       `(let (,,@(loop for g in gensyms for n in names collect ``(,,g ,,n)))
+	  ,(let (,@(loop for n in names for g in gensyms collect `(,n ,g)))
+	     ,@body)))))
 
 
 ;;------------- Other useful stuff -------------
 @export
 (defun partition (pred seq)
+  "Separates the contents of SEQ into two lists, depending on the result of PRED when applied to each element of SEQ."
   (declare (type function pred))
   (mapcar #'reverse ; reverse both lists
           (reduce (lambda (r x)
@@ -146,9 +166,11 @@
 
 @export
 (defun demultiplex (input &optional (bindings nil))
+  "Given a LIST of LISTs returns all combinations of the elements in each of the LISTs in INPUT."
   (when (or (null input) (not (listp input)))
     (return-from demultiplex (list bindings)))
 
-  (let ((bind (if (listp bindings) bindings (list bindings))))
-    (loop for i in (if (listp (car input)) (car input) (list (car input)))
-       append (demultiplex (cdr input) (append bind (list i))))))
+  (let ((bind (mklist bindings)))
+    (iterate:iterate
+      (iterate:for i in (mklist (car input)))
+      (iterate:appending (demultiplex (cdr input) (append bind (list i)))))))
