@@ -109,4 +109,4 @@ This library is released under the MIT License. Please refer to the [LICENSE](ht
 
 ## Contributing to this project
 
-Please refer to the [CONTRIBUTING](https://gitlab.com/ediethelm/trivial-utilities/blob/master/CONTRIBUTING "Contributing") document for more information.
+Please refer to the [CONTRIBUTING](https://gitlab.com/ediethelm/trivial-utilities/blob/master/CONTRIBUTING.md "Contributing") document for more information.
