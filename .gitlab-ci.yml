@@ -12,4 +12,4 @@ before_script:
 build:
   stage: build
   script:
-    - sbcl --non-interactive -e '(ql:quickload :trivial-utilities)'
+    - sbcl --non-interactive --eval "(ql:quickload :trivial-utilities)"
