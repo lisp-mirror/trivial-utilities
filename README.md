@@ -25,27 +25,27 @@ A collection of useful types, functions and macros.
 
 - [macro] AIF TEST THEN &OPTIONAL ELSE
 
-    Similar to the normal @IF, but binds the result of TEST via @LET to IT.
+    Similar to the normal IF, but binds the result of TEST via LET to IT.
 
 - [macro] AWHEN TEST &BODY THEN
 
-    Similar to the normal @WHEN, but binds the result of TEST via @LET to IT.
+    Similar to the normal WHEN, but binds the result of TEST via LET to IT.
 
 - [macro] AUNLESS TEST &BODY ELSE
 
-    Similar to the normal @UNLESS, but binds the result of TEST via @LET to IT.
+    Similar to the normal UNLESS, but binds the result of TEST via LET to IT.
 
 - [macro] APROG1 FIRST &BODY BODY
 
-    Similar to the normal @PROG1, but binds the result of FIRST via @LET to IT and returns IT.
+    Similar to the normal PROG1, but binds the result of FIRST via LET to IT and returns IT.
 
 - [macro] BLAMBDA PARMS &BODY BODY
 
-    Similar to @LAMBDA, but defines an unnamed @BLOCK from which one can @RETURN.
+    Similar to LAMBDA, but defines an unnamed BLOCK from which one can RETURN.
 
 - [macro] ALAMBDA PARMS &BODY BODY
 
-    Similar to @LAMBDA, but defines SELF via @LABELS which contains the BODY. SELF can be referenced in BODY.
+    Similar to LAMBDA, but defines SELF via LABELS which contains the BODY. SELF can be referenced in BODY.
 
 - [generic-function] FLATTEN OBJ
 
@@ -59,11 +59,11 @@ A collection of useful types, functions and macros.
 
 - [function] MKSTR &REST ARGS
 
-    Creates a string out of all elements in ARGS. Each element must be printable per @PRINC.
+    Creates a string out of all elements in ARGS. Each element must be printable per PRINC.
 
 - [function] SYMB &REST ARGS
 
-    Creates a new and internalized SYMBOL, named by applying @MKSTR to ARGS.
+    Creates a new and internalized SYMBOL, named by applying MKSTR to ARGS.
 
 - [function] SINGLE LST
 
@@ -85,21 +85,21 @@ A collection of useful types, functions and macros.
 
     Separates the contents of SEQ into two lists, depending on the result of PRED when applied to each element of SEQ.
 
-Example usage of @PARTITION  
+    Example usage of PARTITION  
 
- `lisp
- (partition #'evenp '(1 2 3 4 5 6))
- ((2 4 6) (1 3 5))`
+    ```lisp
+    (partition #'evenp '(1 2 3 4 5 6))  
+    => ((2 4 6) (1 3 5))```
 
 - [function] DEMULTIPLEX INPUT &OPTIONAL (BINDINGS NIL)
 
     Given a LIST of LISTs returns all combinations of the elements in each of the LISTs in INPUT.
 
-Example output for @DEMULTIPLEX  
+    Example output for DEMULTIPLEX  
 
- `lisp
- (demultiplex '((a b c) (x) (1 2)))
- => ((A X 1) (A X 2) (B X 1) (B X 2) (C X 1) (C X 2))`
+    ```lisp
+    (demultiplex '((a b c) (x) (1 2)))  
+    => ((A X 1) (A X 2) (B X 1) (B X 2) (C X 1) (C X 2))```
 
 ## License Information
 
