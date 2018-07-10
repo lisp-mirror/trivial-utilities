@@ -1,5 +1,7 @@
 # Trivial Utilities Manual
 
+[![pipeline status](https://gitlab.com/ediethelm/trivial-utilities/badges/master/pipeline.svg)](https://gitlab.com/ediethelm/trivial-utilities/commits/master)
+
 ###### \[in package TRIVIAL-UTILITIES\]
 
 ## Description
