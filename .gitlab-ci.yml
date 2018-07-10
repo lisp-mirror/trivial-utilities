@@ -1,0 +1,15 @@
+image: daewok/lisp-devel
+
+stages:
+  - build
+
+before_script:
+  - apt-get update -qy
+  - apt-get install -y git-core
+  - git clone https://gitlab.com/ediethelm/trivial-utilities.git ~/quicklisp/local-projects/
+
+build:
+  stage: build
+  script:
+    - sbcl --non-interactive -e '(ql:quickload :trivial-utilities)'
+    - exit /b %errorlevel%
