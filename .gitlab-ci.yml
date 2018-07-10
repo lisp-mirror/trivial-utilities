@@ -9,7 +9,13 @@ before_script:
   - cp -r /builds/ediethelm/trivial-utilities ~/quicklisp/local-projects/
   - ls ~/quicklisp/local-projects/
 
-build:
+sbcl-build:
   stage: build
   script:
     - sbcl --non-interactive --eval "(ql:quickload :trivial-utilities)"
+
+
+ccl-build:
+  stage: build
+  script:
+    - ccl --eval "(let ((*debugger-hook* #'(lambda (condition me-or-my-encapsulation) (uiop:quit 1)))) (ql:quickload :trivial-utilities)"
