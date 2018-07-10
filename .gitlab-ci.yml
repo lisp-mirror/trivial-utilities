@@ -13,4 +13,3 @@ build:
   stage: build
   script:
     - sbcl --non-interactive -e '(ql:quickload :trivial-utilities)'
-    - exit /b %errorlevel%
