@@ -6,7 +6,8 @@ stages:
 before_script:
   - apt-get update -qy
   - apt-get install -y git-core
-  - git clone git@gitlab.com:ediethelm/trivial-utilities.git ~/quicklisp/local-projects/
+  - cp /builds/ediethelm/trivial-utilities ~/quicklisp/local-projects/
+  - ls ~/quicklisp/local-projects/
 
 build:
   stage: build
