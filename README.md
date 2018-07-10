@@ -89,7 +89,8 @@ A collection of useful types, functions and macros.
 
     ```lisp
     (partition #'evenp '(1 2 3 4 5 6))  
-    => ((2 4 6) (1 3 5))```
+    => ((2 4 6) (1 3 5))
+    ```
 
 - [function] DEMULTIPLEX INPUT &OPTIONAL (BINDINGS NIL)
 
@@ -99,7 +100,8 @@ A collection of useful types, functions and macros.
 
     ```lisp
     (demultiplex '((a b c) (x) (1 2)))  
-    => ((A X 1) (A X 2) (B X 1) (B X 2) (C X 1) (C X 2))```
+    => ((A X 1) (A X 2) (B X 1) (B X 2) (C X 1) (C X 2))
+    ```
 
 ## License Information
 
