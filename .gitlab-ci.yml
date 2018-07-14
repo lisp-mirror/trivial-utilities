@@ -1,0 +1,24 @@
+image: daewok/lisp-devel
+
+stages:
+  - build
+
+before_script:
+  - apt-get update -qy
+  - apt-get install -y git-core
+  - cp -r /builds/ediethelm/trivial-utilities ~/quicklisp/local-projects/
+  - ls ~/quicklisp/local-projects/
+
+sbcl-build:
+  stage: build
+  script:
+    - sbcl --non-interactive --eval "(ql:quickload :trivial-utilities)"
+
+
+ccl-build:
+  stage: build
+  script:
+    - ccl --eval "(let ((*debugger-hook* (lambda (c m)
+                                           (declare (ignore c m))
+                                           (uiop:quit 1))))
+                    (ql:quickload :trivial-utilities))"
