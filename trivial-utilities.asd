@@ -7,8 +7,7 @@
   :author "Eric Diethelm <ediethelm@yahoo.com>"
   :licence "MIT"
   :depends-on (:iterate
-	       :mgl-pax
-	       :cl-annot)
+	       :mgl-pax)
   :components ((:file "package")
 	       (:file "trivial-utilities")
 	       (:file "documentation")))

@@ -4,13 +4,17 @@
 (in-package :trivial-utilities)
 
 (defsection @trivial-utilities-manual (:title "Trivial Utilities Manual")
-  "A collection of useful types, functions and macros."
+  "[![pipeline status](https://gitlab.com/ediethelm/trivial-utilities/badges/master/pipeline.svg)](https://gitlab.com/ediethelm/trivial-utilities/commits/master)"
+  (@trivial-utilities-description section)
   (@commonly-used-types section)
   (@from-onlisp section)
   (@from-pcl section)
   (@other-useful-stuff section)
   (@trivial-utilities-license section)
   (@trivial-utilities-contributing section))
+
+(defsection @trivial-utilities-description (:title "Description")
+  "A collection of useful types, functions and macros.")
 
 (defsection @commonly-used-types (:title "Commonly used types")
   (negative-fixnum type)
@@ -38,18 +42,20 @@
 (defsection @other-useful-stuff (:title "Other useful stuff")
   (partition function)
   "  
-Example usage of @PARTITION  
+Example usage of *PARTITION*  
 
- ```lisp
- (partition #'evenp '(1 2 3 4 5 6))
- ((2 4 6) (1 3 5))```"
+```lisp
+(partition #'evenp '(1 2 3 4 5 6))
+((2 4 6) (1 3 5))
+```"
   (demultiplex function)
   "  
-Example output for @DEMULTIPLEX  
+Example output for *DEMULTIPLEX*  
 
- ```lisp
- (demultiplex '((a b c) (x) (1 2)))
- => ((A X 1) (A X 2) (B X 1) (B X 2) (C X 1) (C X 2))```")
+```lisp
+(demultiplex '((a b c) (x) (1 2)))
+=> ((A X 1) (A X 2) (B X 1) (B X 2) (C X 1) (C X 2))
+```")
 
 
 (defsection @trivial-utilities-license (:title "License Information")
