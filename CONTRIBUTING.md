@@ -4,7 +4,7 @@ In my daily work I only use SBCL and CCL, and mostly under linux. Occasionaly I 
 
 Although I now develop for many years with Common Lisp, I'm still learning - and will hopefully never stop. So if you would like to show me how to improve the code, please feel free to fork or send me a message.
 
-If you open a Pull Request, others will also benefit from your work.
+If you open a Merge Request, others will also benefit from your work.
 
 
 ## Reporting Bugs
