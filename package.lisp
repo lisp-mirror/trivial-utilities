@@ -18,5 +18,6 @@
 	   #:mklist
 	   #:once-only
 	   #:partition
-	   #:demultiplex))
+	   #:demultiplex
+	   #:equals))
 

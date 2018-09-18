@@ -154,3 +154,13 @@ An implementation for *LIST*s already exists. Add specific implementations for s
     (iterate:iterate
       (iterate:for i in (mklist (car input)))
       (iterate:appending (demultiplex (cdr input) (append bind (list i)))))))
+
+
+(defgeneric equals (obj1 obj2)
+   (:method (obj1 obj2)
+    "Default method if all other cases fail."
+    (cl:equal obj1 obj2))) ; calls the original version
+
+(defmethod equals ((obj1 list) (obj2 list))
+    (and (eq (length obj1) (length obj2))
+	 (every #'equals obj1 obj2)))
