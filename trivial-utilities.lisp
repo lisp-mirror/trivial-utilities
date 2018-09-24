@@ -156,11 +156,16 @@ An implementation for *LIST*s already exists. Add specific implementations for s
       (iterate:appending (demultiplex (cdr input) (append bind (list i)))))))
 
 
-(defgeneric equals (obj1 obj2)
-   (:method (obj1 obj2)
+(defgeneric equals (obj1 obj2 &key &allow-other-keys)
+   (:method (obj1 obj2 &key &allow-other-keys)
     "Default method if all other cases fail."
     (cl:equal obj1 obj2))) ; calls the original version
 
-(defmethod equals ((obj1 list) (obj2 list))
+(defmethod equals ((obj1 list) (obj2 list) &key &allow-other-keys)
     (and (eq (length obj1) (length obj2))
-	 (every #'equals obj1 obj2)))
+	 (notany #'(lambda (x y) (not (equals x y))) obj1 obj2)))
+
+
+(defgeneric clone (obj &key &allow-other-keys)
+  (:documentation "A generic function to clone objects."))
+

@@ -19,5 +19,6 @@
 	   #:once-only
 	   #:partition
 	   #:demultiplex
-	   #:equals))
+	   #:equals
+	   #:clone))
 
