@@ -161,10 +161,16 @@ An implementation for *LIST*s already exists. Add specific implementations for s
     "Default method if all other cases fail."
     (cl:equal obj1 obj2))) ; calls the original version
 
+
+(defmethod equals ((obj1 null) (obj2 null) &key &allow-other-keys)
+  nil)
+   
 (defmethod equals ((obj1 list) (obj2 list) &key &allow-other-keys)
     (and (eq (length obj1) (length obj2))
 	 (notany #'(lambda (x y) (not (equals x y))) obj1 obj2)))
 
+(defmethod equals ((obj1 string) (obj2 string) &key &allow-other-keys)
+    (string= obj1 obj2))
 
 (defgeneric clone (obj &key &allow-other-keys)
   (:documentation "A generic function to clone objects."))
