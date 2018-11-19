@@ -155,6 +155,34 @@ An implementation for *LIST*s already exists. Add specific implementations for s
       (iterate:for i in (mklist (car input)))
       (iterate:appending (demultiplex (cdr input) (append bind (list i)))))))
 
+(defun merge-lambda-lists (&rest lists)
+  "Given two lambda lists, return one representing the unification of both."
+  ;; @TODO Add some checks verifying the result is a valid lambda-list
+  (let ((args '())
+	 (keys '())
+	 (optionals '())
+	 (rests '())
+	 (collecting :args))
+     (iterate:iterate
+       (iterate:for lambda-list in lists)
+       (setf collecting :args)
+       (iterate:iterate
+	 (iterate:for elm in lambda-list)
+	 (case elm
+	   (&key (setf collecting :key))
+	   (&optional (setf collecting :optional))
+	   (&rest (setf collecting :rest))
+	   (t
+	    (case collecting
+	      (:key (push elm keys))
+	      (:optional (push elm optionals))
+	      (:rest (push elm rests))
+	      (:args (push elm args)))))))
+
+     `(,@(reverse args)
+	 ,@(when keys (cons '&key (reverse keys)))
+	 ,@(when optionals (cons '&optional (reverse optionals)))
+	 ,@(when rests (cons '&rest (reverse rests))))))
 
 (defgeneric equals (obj1 obj2 &key &allow-other-keys)
    (:method (obj1 obj2 &key &allow-other-keys)

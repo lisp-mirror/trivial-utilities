@@ -19,6 +19,7 @@
 	   #:once-only
 	   #:partition
 	   #:demultiplex
+	   #:merge-lambda-lists
 	   #:equals
 	   #:clone))
 
