@@ -10,16 +10,18 @@ A collection of useful types, functions and macros I use in almost every project
 
 ## Installing trivial-utilities
 
-Since this project is not yet available in the latest [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") distribution, it has to be copied to your local-projects folder:
+This project is available in the latest [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") distribution, so installing it is reduced to calling:
+```lisp
+(ql:quickload :trivial-utilities)
+```
+
+But if you want access to the latest updates, install it by cloning the Git repository with
 ```bash
 cd $HOME/quicklisp/local-projects
 git clone https://gitlab.com/ediethelm/trivial-utilities.git
 ```
 
-After the files are copied, we can use [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") to load trivial-utilities:
-```lisp
-(ql:quickload :trivial-utilities)
-```
+and then loading it as usual via [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") as above.
 
 ## Commonly used types
 
