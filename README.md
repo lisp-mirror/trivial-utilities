@@ -2,6 +2,7 @@
 
 ###### \[in package TRIVIAL-UTILITIES\]
 [![pipeline status](https://gitlab.com/ediethelm/trivial-utilities/badges/master/pipeline.svg)](https://gitlab.com/ediethelm/trivial-utilities/commits/master)
+[![Quicklisp](http://quickdocs.org/badge/trivial-utilities.svg)](http://quickdocs.org/trivial-utilities/)
 
 ## Description
 
