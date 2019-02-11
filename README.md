@@ -2,24 +2,28 @@
 
 ###### \[in package TRIVIAL-UTILITIES\]
 [![pipeline status](https://gitlab.com/ediethelm/trivial-utilities/badges/master/pipeline.svg)](https://gitlab.com/ediethelm/trivial-utilities/commits/master)
+[![Quicklisp](http://quickdocs.org/badge/trivial-utilities.svg)](http://quickdocs.org/trivial-utilities/)
 
 ## Description
 
-A collection of useful types, functions and macros I use in almost every project.
-
+A collection of useful types, functions and macros.
 
 ## Installing trivial-utilities
 
-Since this project is not yet available in the latest [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") distribution, it has to be copied to your local-projects folder:
+This project is available in the latest [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") distribution, so installing it is reduced to calling:
+
+```lisp
+(ql:quickload :trivial-utilities)
+```
+
+But if you want access to the latest updates, install it by cloning the Git repository with
+
 ```bash
 cd $HOME/quicklisp/local-projects
 git clone https://gitlab.com/ediethelm/trivial-utilities.git
 ```
 
-After the files are copied, we can use [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") to load trivial-utilities:
-```lisp
-(ql:quickload :trivial-utilities)
-```
+and then loading it as usual via [QuickLisp](https://www.quicklisp.org/beta/ "QuickLisp") as above.
 
 ## Commonly used types
 
@@ -122,6 +126,34 @@ Example output for *DEMULTIPLEX*
 => ((A X 1) (A X 2) (B X 1) (B X 2) (C X 1) (C X 2))
 ```
 
+
+- [function] MERGE-LAMBDA-LISTS &REST LISTS
+
+    Given two lambda lists, return one representing the unification of both.
+
+- [generic-function] EQUALS OBJ1 OBJ2 &KEY &ALLOW-OTHER-KEYS
+
+    A generic equality comparison function.
+
+- [method] EQUALS OBJ1 OBJ2
+
+    Default method if all other cases fail. Uses cl:equal for comparison.
+
+- [method] EQUALS (OBJ1 NULL) (OBJ2 NULL)
+
+    Equality comparison of two *NULL* symbols always results in *NIL*.
+
+- [method] EQUALS (OBJ1 LIST) (OBJ2 LIST)
+
+    Equality comparison of two *LIST*s requires both to have the same length and each element to be equaly comparable (*EQUALS*).
+
+- [method] EQUALS (OBJ1 STRING) (OBJ2 STRING)
+
+    Equality comparison of two *STRING*s falls back to *string=*.
+
+- [generic-function] CLONE OBJ &KEY &ALLOW-OTHER-KEYS
+
+    A generic function to clone objects.
 
 ## License Information
 

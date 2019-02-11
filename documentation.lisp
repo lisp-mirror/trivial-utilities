@@ -4,8 +4,11 @@
 (in-package :trivial-utilities)
 
 (defsection @trivial-utilities-manual (:title "Trivial Utilities Manual")
-  "[![pipeline status](https://gitlab.com/ediethelm/trivial-utilities/badges/master/pipeline.svg)](https://gitlab.com/ediethelm/trivial-utilities/commits/master)"
+  "[![pipeline status](https://gitlab.com/ediethelm/trivial-utilities/badges/master/pipeline.svg)](https://gitlab.com/ediethelm/trivial-utilities/commits/master)
+[![Quicklisp](http://quickdocs.org/badge/trivial-utilities.svg)](http://quickdocs.org/trivial-utilities/)"
+  
   (@trivial-utilities-description section)
+  (@trivial-utilities-installing section)
   (@commonly-used-types section)
   (@from-onlisp section)
   (@from-pcl section)
@@ -15,6 +18,23 @@
 
 (defsection @trivial-utilities-description (:title "Description")
   "A collection of useful types, functions and macros.")
+
+(defsection @trivial-utilities-installing (:title "Installing trivial-utilities")
+  "This project is available in the latest [QuickLisp](https://www.quicklisp.org/beta/ \"QuickLisp\") distribution, so installing it is reduced to calling:
+
+```lisp
+(ql:quickload :trivial-utilities)
+```
+
+But if you want access to the latest updates, install it by cloning the Git repository with
+
+```bash
+cd $HOME/quicklisp/local-projects
+git clone https://gitlab.com/ediethelm/trivial-utilities.git
+```
+
+and then loading it as usual via [QuickLisp](https://www.quicklisp.org/beta/ \"QuickLisp\") as above.
+")
 
 (defsection @commonly-used-types (:title "Commonly used types")
   (negative-fixnum type)
@@ -55,7 +75,16 @@ Example output for *DEMULTIPLEX*
 ```lisp
 (demultiplex '((a b c) (x) (1 2)))
 => ((A X 1) (A X 2) (B X 1) (B X 2) (C X 1) (C X 2))
-```")
+```
+"
+
+  (merge-lambda-lists function)
+  (equals generic-function)
+  (equals (method () (t t)))
+  (equals (method () (null null)))
+  (equals (method () (list list)))
+  (equals (method () (string string)))
+  (clone generic-function))
 
 
 (defsection @trivial-utilities-license (:title "License Information")

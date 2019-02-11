@@ -185,20 +185,25 @@ An implementation for *LIST*s already exists. Add specific implementations for s
 	 ,@(when rests (cons '&rest (reverse rests))))))
 
 (defgeneric equals (obj1 obj2 &key &allow-other-keys)
-   (:method (obj1 obj2 &key &allow-other-keys)
-    "Default method if all other cases fail."
-    (cl:equal obj1 obj2))) ; calls the original version
+  (:documentation "A generic equality comparison function.")
+  
+  (:method (obj1 obj2 &key &allow-other-keys)
+    "Default method if all other cases fail. Uses cl:equal for comparison."
+    (cl:equal obj1 obj2))
 
 
-(defmethod equals ((obj1 null) (obj2 null) &key &allow-other-keys)
-  nil)
-   
-(defmethod equals ((obj1 list) (obj2 list) &key &allow-other-keys)
+  (:method ((obj1 null) (obj2 null) &key &allow-other-keys)
+    "Equality comparison of two *NULL* symbols always results in *NIL*."
+    nil)
+  
+  (:method ((obj1 list) (obj2 list) &key &allow-other-keys)
+    "Equality comparison of two *LIST*s requires both to have the same length and each element to be equaly comparable (*EQUALS*)."
     (and (eq (length obj1) (length obj2))
 	 (notany #'(lambda (x y) (not (equals x y))) obj1 obj2)))
 
-(defmethod equals ((obj1 string) (obj2 string) &key &allow-other-keys)
-    (string= obj1 obj2))
+  (:method ((obj1 string) (obj2 string) &key &allow-other-keys)
+    "Equality comparison of two *STRING*s falls back to *string=*."
+    (string= obj1 obj2)))
 
 (defgeneric clone (obj &key &allow-other-keys)
   (:documentation "A generic function to clone objects."))
