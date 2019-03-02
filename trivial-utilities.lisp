@@ -222,4 +222,4 @@ An implementation for *LIST*s already exists. Add specific implementations for s
     (when (and (not (member slot-name slots-to-ignore))
 	       (c2mop:slot-definition-initargs slot)
 	       (slot-boundp instance slot-name))
-      (iterate:appending (list (c2mop:slot-definition-initargs slot) (slot-value instance slot-name))))))
+      (iterate:appending (list (car (c2mop:slot-definition-initargs slot)) (slot-value instance slot-name))))))
