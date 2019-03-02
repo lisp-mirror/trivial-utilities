@@ -155,6 +155,14 @@ Example output for *DEMULTIPLEX*
 
     A generic function to clone objects.
 
+- [function] ALL-SLOTS CLASS
+
+    Create a list containing all slots defined for *class*, including slots defined (recursively) in all superclasses.
+
+- [function] COLLECT-PERSISTENT-SLOTS INSTANCE &KEY SLOTS-TO-IGNORE
+
+    Any slot which defines :initarg, is bound to a value and is not listed in *slots-to-ignore* will be appended in the form (initarg value).
+
 ## License Information
 
 This library is released under the MIT License. Please refer to the [LICENSE](https://gitlab.com/ediethelm/trivial-utilities/blob/master/LICENSE "License") to get the full licensing text.
@@ -162,4 +170,3 @@ This library is released under the MIT License. Please refer to the [LICENSE](ht
 ## Contributing to this project
 
 Please refer to the [CONTRIBUTING](https://gitlab.com/ediethelm/trivial-utilities/blob/master/CONTRIBUTING "Contributing") document for more information.
-

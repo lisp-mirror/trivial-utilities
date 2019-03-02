@@ -21,5 +21,7 @@
 	   #:demultiplex
 	   #:merge-lambda-lists
 	   #:equals
-	   #:clone))
+	   #:clone
+	   #:all-slots
+	   #:collect-persistent-slots))
 

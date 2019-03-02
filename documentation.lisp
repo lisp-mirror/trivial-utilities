@@ -84,7 +84,9 @@ Example output for *DEMULTIPLEX*
   (equals (method () (null null)))
   (equals (method () (list list)))
   (equals (method () (string string)))
-  (clone generic-function))
+  (clone generic-function)
+  (all-slots function)
+  (collect-persistent-slots function))
 
 
 (defsection @trivial-utilities-license (:title "License Information")

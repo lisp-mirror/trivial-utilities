@@ -208,3 +208,18 @@ An implementation for *LIST*s already exists. Add specific implementations for s
 (defgeneric clone (obj &key &allow-other-keys)
   (:documentation "A generic function to clone objects."))
 
+(defun all-slots (class)
+  "Create a list containing all slots defined for *class*, including slots defined (recursively) in all superclasses."
+  (append (closer-mop:class-direct-slots class)
+          (alexandria:mappend #'all-slots
+			      (closer-mop:class-direct-superclasses class))))
+
+(defun collect-persistent-slots (instance &key slots-to-ignore)
+  "Any slot which defines :initarg, is bound to a value and is not listed in *slots-to-ignore* will be appended in the form (initarg value)."
+  (iterate:iterate
+    (iterate:for slot in (all-slots (class-of instance)))
+    (iterate:for slot-name = (c2mop:slot-definition-name slot))
+    (when (and (not (member slot-name slots-to-ignore))
+	       (c2mop:slot-definition-initargs slot)
+	       (slot-boundp instance slot-name))
+      (iterate:appending (list (c2mop:slot-definition-initargs slot) (slot-value instance slot-name))))))
