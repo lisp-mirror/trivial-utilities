@@ -23,5 +23,6 @@
 	   #:equals
 	   #:clone
 	   #:all-slots
-	   #:collect-persistent-slots))
+	   #:collect-persistent-slots
+	   #:extract-additional-keys))
 

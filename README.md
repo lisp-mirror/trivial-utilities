@@ -163,6 +163,13 @@ Example output for *DEMULTIPLEX*
 
     Any slot which defines :initarg, is bound to a value and is not listed in *slots-to-ignore* will be appended in the form (initarg value).
 
+- [macro] EXTRACT-ADDITIONAL-KEYS (KEYS ARGS) &BODY BODY
+
+    Convenience macro to extract keywords including default values from a plist, such as (:a 1 :b 2 :c 3). Usually used in confunction with (&rest keys &key &allow-other-keys).  
+    *KEYS* - The keys to be extracted. This follows the syntax of **let**. Example: ((a nil) b (c t c-was-in-args-p))  
+    *ARGS* - A property list of keyword-value pairs  
+    *BODY* - Code to be executed and which uses the extracted keys.
+
 ## License Information
 
 This library is released under the MIT License. Please refer to the [LICENSE](https://gitlab.com/ediethelm/trivial-utilities/blob/master/LICENSE "License") to get the full licensing text.
