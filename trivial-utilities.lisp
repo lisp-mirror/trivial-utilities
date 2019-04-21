@@ -67,9 +67,12 @@ An implementation for *LIST*s already exists. Add specific implementations for s
 (defmethod flatten ((obj t))
   "Returns a list with the flatten contents of the *LIST* *OBJ*."
   (labels ((rec (obj acc)
-             (cond ((null obj) acc)
-                   ((atom obj) (cons obj acc))
-                   (t (rec (car obj) (rec (cdr obj) acc))))))
+             (cond ((consp obj)
+		                (rec (car obj)
+			                   (if (cdr obj)
+			                       (rec (cdr obj) acc)
+			                       acc)))
+                   (t (cons obj acc)))))
     (rec obj nil)))
 
 (defun mkstr (&rest args)
