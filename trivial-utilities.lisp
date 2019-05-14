@@ -68,10 +68,10 @@ An implementation for *LIST*s already exists. Add specific implementations for s
   "Returns a list with the flatten contents of the *LIST* *OBJ*."
   (labels ((rec (obj acc)
              (cond ((consp obj)
-		                (rec (car obj)
-			                   (if (cdr obj)
-			                       (rec (cdr obj) acc)
-			                       acc)))
+		    (rec (car obj)
+			 (if (cdr obj)
+			     (rec (cdr obj) acc)
+			     acc)))
                    (t (cons obj acc)))))
     (rec obj nil)))
 
@@ -229,7 +229,7 @@ An implementation for *LIST*s already exists. Add specific implementations for s
 
 
 (defmacro extract-additional-keys ((keys args) &body body)
-  "Convenience macro to extract keywords including default values from a plist, such as (:a 1 :b 2 :c 3). Usually used in confunction with (&rest keys &key &allow-other-keys).  
+  "Convenience macro to extract keywords including default values from a plist, such as (:a 1 :b 2 :c 3). Usually used in conjunction with (&rest keys &key &allow-other-keys).  
 *KEYS* - The keys to be extracted. This follows the syntax of **let**. Example: ((a nil) b (c t c-was-in-args-p))  
 *ARGS* - A property list of keyword-value pairs  
 *BODY* - Code to be executed and which uses the extracted keys."
