@@ -24,5 +24,7 @@
 	   #:clone
 	   #:all-slots
 	   #:collect-persistent-slots
-	   #:extract-additional-keys))
+	   #:extract-additional-keys
+	   #:make-doc-updater
+	   #:update-doc))
 

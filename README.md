@@ -165,10 +165,18 @@ Example output for *DEMULTIPLEX*
 
 - [macro] EXTRACT-ADDITIONAL-KEYS (KEYS ARGS) &BODY BODY
 
-    Convenience macro to extract keywords including default values from a plist, such as (:a 1 :b 2 :c 3). Usually used in confunction with (&rest keys &key &allow-other-keys).  
+    Convenience macro to extract keywords including default values from a plist, such as (:a 1 :b 2 :c 3). Usually used in conjunction with (&rest keys &key &allow-other-keys).  
     *KEYS* - The keys to be extracted. This follows the syntax of **let**. Example: ((a nil) b (c t c-was-in-args-p))  
     *ARGS* - A property list of keyword-value pairs  
     *BODY* - Code to be executed and which uses the extracted keys.
+
+- [macro] MAKE-DOC-UPDATER COMPONENT DOC-ROOT-SECTION
+
+    A macro to generate a documentation updating method specialized for *COMPONENT*. *DOC-ROOT-SECTION* indicates the MGL-PAX root section.
+
+- [generic-function] UPDATE-DOC COMPONENT &OPTIONAL FILE-NAME
+
+    The generic function used to update the documentation of a project identified by *COMPONENT*. *FILE-NAME* defaults to "README.md".
 
 ## License Information
 

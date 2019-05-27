@@ -238,3 +238,18 @@ An implementation for *LIST*s already exists. Add specific implementations for s
        ,args
      ,@body))
 
+
+(defgeneric update-doc (component &optional file-name)
+  (:documentation "The generic function used to update the documentation of a project identified by *COMPONENT*. *FILE-NAME* defaults to \"README.md\"."))
+
+(defmacro make-doc-updater (component doc-root-section)
+  "A macro to generate a documentation updating method specialized for *COMPONENT*. *DOC-ROOT-SECTION* indicates the MGL-PAX root section."
+  `(progn
+     (defmethod trivial-utilities:update-doc ((component (eql ,component)) &optional (file-name "README.md"))
+       (with-open-file (stream (uiop:merge-pathnames*
+				file-name
+				(asdf:system-source-directory ,component))
+			       :direction :output
+			       :if-exists :supersede)
+	 (describe ,doc-root-section stream)))))
+  

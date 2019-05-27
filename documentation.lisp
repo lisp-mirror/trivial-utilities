@@ -87,7 +87,9 @@ Example output for *DEMULTIPLEX*
   (clone generic-function)
   (all-slots function)
   (collect-persistent-slots function)
-  (extract-additional-keys macro))
+  (extract-additional-keys macro)
+  (make-doc-updater macro)
+  (update-doc generic-function))
 
 
 (defsection @trivial-utilities-license (:title "License Information")
@@ -96,3 +98,4 @@ Example output for *DEMULTIPLEX*
 (defsection @trivial-utilities-contributing (:title "Contributing to this project")
   "Please refer to the [CONTRIBUTING](https://gitlab.com/ediethelm/trivial-utilities/blob/master/CONTRIBUTING 'Contributing') document for more information.")
 
+(make-doc-updater :trivial-utilities @trivial-utilities-manual)
