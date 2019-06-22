@@ -64,6 +64,9 @@
 
 An implementation for *LIST*s already exists. Add specific implementations for special objects."))
 
+(defmethod flatten ((obj null))
+  nil)
+
 (defmethod flatten ((obj t))
   "Returns a list with the flatten contents of the *LIST* *OBJ*."
   (labels ((rec (obj acc)
