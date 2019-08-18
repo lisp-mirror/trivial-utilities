@@ -3,13 +3,11 @@
 (defsystem :trivial-utilities
   :name "trivial-utilities"
   :description "A collection of useful functions and macros."
-  :version "0.3.9"
+  :version "0.3.10"
   :author "Eric Diethelm <ediethelm@yahoo.com>"
   :licence "MIT"
   :depends-on (:iterate
-		:closer-mop
-	        :mgl-pax)
+	       :closer-mop)
   :components ((:file "package")
-	       (:file "trivial-utilities")
-	       (:file "documentation")))
+	       (:file "trivial-utilities")))
 

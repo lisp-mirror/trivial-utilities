@@ -1,6 +1,6 @@
-(mgl-pax:define-package #:trivial-utilities
+(uiop:define-package #:trivial-utilities
   (:documentation "trivial-utilities is a collection of useful functions and macros.")
-  (:use #:common-lisp #:mgl-pax)
+  (:use #:common-lisp)
   (:export #:negative-fixnum
 	   #:non-positive-fixnum
 	   #:non-negative-fixnum
