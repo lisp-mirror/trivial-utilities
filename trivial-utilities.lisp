@@ -199,8 +199,8 @@ An implementation for *LIST*s already exists. Add specific implementations for s
 
 
   (:method ((obj1 null) (obj2 null) &key &allow-other-keys)
-    "Equality comparison of two *NULL* symbols always results in *NIL*."
-    nil)
+    "Equality comparison of two *NULL* symbols always results in *T*."
+    t)
   
   (:method ((obj1 list) (obj2 list) &key &allow-other-keys)
     "Equality comparison of two *LIST*s requires both to have the same length and each element to be equaly comparable (*EQUALS*)."
