@@ -170,14 +170,6 @@ Example output for *DEMULTIPLEX*
     *ARGS* - A property list of keyword-value pairs  
     *BODY* - Code to be executed and which uses the extracted keys.
 
-- [macro] MAKE-DOC-UPDATER COMPONENT DOC-ROOT-SECTION
-
-    A macro to generate a documentation updating method specialized for *COMPONENT*. *DOC-ROOT-SECTION* indicates the MGL-PAX root section.
-
-- [generic-function] UPDATE-DOC COMPONENT &OPTIONAL FILE-NAME
-
-    The generic function used to update the documentation of a project identified by *COMPONENT*. *FILE-NAME* defaults to "README.md".
-
 ## License Information
 
 This library is released under the MIT License. Please refer to the [LICENSE](https://gitlab.com/ediethelm/trivial-utilities/blob/master/LICENSE "License") to get the full licensing text.
